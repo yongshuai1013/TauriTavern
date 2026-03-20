@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   check-for-new-commits:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     outputs:
       should_build: ${{ steps.check.outputs.should_build }}
       reason: ${{ steps.check.outputs.reason }}
@@ -102,10 +102,6 @@ jobs:
         with:
           node-version: lts/*
           cache: pnpm
-
-      - name: Enable universe repo
-        if: matrix.mobile == 'android'
-        run: sudo add-apt-repository universe && sudo apt-get update
 
       - name: Install Android host build dependencies
         if: matrix.mobile == 'android'
