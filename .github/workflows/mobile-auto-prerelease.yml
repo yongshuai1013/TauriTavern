@@ -103,6 +103,10 @@ jobs:
           node-version: lts/*
           cache: pnpm
 
+      - name: Enable universe repo
+        if: matrix.mobile == 'android'
+        run: sudo add-apt-repository universe && sudo apt-get update
+
       - name: Install Android host build dependencies
         if: matrix.mobile == 'android'
         run: |
