@@ -103,11 +103,13 @@ jobs:
           node-version: lts/*
           cache: pnpm
 
+
       - name: Install Android host build dependencies
         if: matrix.mobile == 'android'
         run: |
+          echo "deb http://gb.archive.ubuntu.com/ubuntu jammy main" > /etc/apt/sources.list
           sudo apt-get update
-          sudo apt-get install -y libglib2.0-dev libgtk-3-dev libjavascriptcoregtk-4.1-dev libsoup-3.0-dev libwebkit2gtk-4.0-37
+          sudo apt-get install -y libglib2.0-dev libgtk-3-dev libjavascriptcoregtk-4.1-dev libsoup-3.0-dev libwebkit2gtk-4.0-dev
 
       - name: Install Rust toolchain (Android targets)
         if: matrix.mobile == 'android'
